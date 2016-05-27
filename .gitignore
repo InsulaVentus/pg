@@ -1,6 +1,3 @@
 *.iml
-*.class
-
-/.idea/
-/pg6100_exam.iml
+*idea/
 *target/
