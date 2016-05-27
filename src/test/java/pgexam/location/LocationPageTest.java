@@ -1,8 +1,5 @@
 package pgexam.location;
 
-/**
- * Created by ng20 on 27.05.2016.
- */
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

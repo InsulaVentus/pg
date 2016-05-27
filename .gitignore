@@ -1,10 +1,6 @@
 *.iml
 *.class
 
-# Package Files #
-*.jar
-*.war
-
 /.idea/
 /pg6100_exam.iml
 *target/
