@@ -1,4 +1,4 @@
-package selenium;
+package pgexam.location;
 
 /**
  * Created by ng20 on 27.05.2016.
