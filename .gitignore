@@ -6,5 +6,5 @@
 *.war
 
 /.idea/
-/target/
 /pg6100_exam.iml
+*target/
