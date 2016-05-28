@@ -20,10 +20,10 @@
     <hr/>
 
     <c:choose>
-        <c:when test="">
+        <c:when test="#{logginController.loggedIn}">
             <h:form>
-                <h:outputText value="Hi"/>
-                <h:commandButton value="Log Out" action="" />
+                <h:outputText value="Hi #{logginController.registeredUser}"/>
+                <h:commandButton value="Log Out" action="#{logginController.logOut}" />
             </h:form>
         </c:when>
         <c:otherwise>

@@ -24,6 +24,12 @@ public class UserEJB implements Serializable {
     }
     public User getPassword(String password){ return em.find(User.class, password);
     }
+    public String getUserByUserName(String name){
+        return em.createQuery("select u from User u where u.name=name").getSingleResult().toString();
+    }
+    public String getSinglPassword(String passowrd){
+        return em.createQuery("select u from User u where u.password=password").getSingleResult().toString();
+    }
     /**
      *
      * @param name
@@ -35,12 +41,43 @@ public class UserEJB implements Serializable {
             return false;
         }
 
-        User user = getUser(name);
-        User pass = getPassword(password);
-        if (user == null ) {
+        String userName = getUserByUserName(name);
+        String userPassword = getSinglPassword(password);
+        if (userName == null || userPassword==null ) {
             return false;
         }
-        boolean isOK = pass.equals(user.getPassword());
-        return isOK;
+
+        return true;
+    }
+
+    /**
+     *
+     * @param username
+     * @param password
+     * @param firstName
+     * @param lastName
+     * @param middleName
+     * @param country
+     * @return {@code false} if for any reason it was not possible to create the user
+     */
+    public boolean createUser(String username, String password, String firstName, String lastName,
+                              String middleName, String country) {
+
+        if (username == null || username.isEmpty() || password == null || password.isEmpty()) {
+            return false;
+        }
+        User user = getUser(username);
+        if(user != null){
+            return  false;
+        }
+        user = new User();
+        user.setName(username);
+        user.setPassword(password);
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setMiddleName(middleName);
+        user.setCountry(country);
+        em.persist(user);
+        return true;
     }
 }

@@ -1,9 +1,6 @@
 package pgexam.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -17,6 +14,7 @@ public class User {
     public static final String DELETE_ALL = "delete_all";
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
     @NotNull
@@ -24,6 +22,18 @@ public class User {
 
     @NotNull
     private String password;
+
+    @NotNull
+    private String firstName;
+
+    @NotNull
+    private String middleName;
+
+    @NotNull
+    private String lastName;
+
+    @NotNull
+    private String country;
 
     public User(){
 
@@ -51,6 +61,31 @@ public class User {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getFirstName(){
+        return firstName;
+    }
+    public void setFirstName(String firstName){
+        this.firstName = firstName;
+    }
+    public String getMiddleName(){
+        return middleName;
+    }
+    public void setMiddleName(String middleName){
+        this.middleName = middleName;
+    }
+    public String getLastName(){
+        return lastName;
+    }
+    public void setLastName(String lastName){
+        this.lastName = lastName;
+    }
+    public String getCountry(){
+        return country;
+    }
+    public void setCountry(String country){
+        this.country = country;
     }
 
 }

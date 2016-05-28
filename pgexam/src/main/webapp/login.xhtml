@@ -22,16 +22,16 @@
 
             <h:panelGrid columns="2">
                 <h:outputLabel value="User name : "/>
-                <h:inputText value=""/>
+                <h:inputText value="#{logginController.formUserName}"/>
 
                 <h:outputLabel value="Password : "/>
-                <h:inputSecret value=""/>
+                <h:inputSecret value="#{logginController.formPassword}"/>
 
             </h:panelGrid>
 
-            <h:commandButton value="Log in" action="#"/>
-            <h:commandButton value="Register new" action="#" />
-            <h:commandButton value="Cancel" action="#" />
+            <h:commandButton value="Log in" action="#{logginController.logIn}"/>
+            <h:button value="Register new" outcome="newUser.xhtml"/>
+            <h:commandButton value="Cancel" action="#{logginController.logCancel}" />
         </h:form>
 
     </ui:define>
