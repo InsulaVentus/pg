@@ -7,6 +7,7 @@
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <jta-data-source>java:jboss/datasources/pg6100_exam</jta-data-source>
         <class>exam.entities.User</class>
+        <class>exam.entities.Event</class>
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
             <property name="hibernate.max_fetch_depth" value="3" />
