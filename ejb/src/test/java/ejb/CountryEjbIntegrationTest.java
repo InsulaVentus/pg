@@ -12,7 +12,7 @@ import static javax.naming.Context.PROVIDER_URL;
 import static javax.naming.Context.URL_PKG_PREFIXES;
 
 
-public class CountryEjbTest {
+public class CountryEjbIntegrationTest {
 
     private static final String LOCALHOST = "127.0.0.1";
 
@@ -36,14 +36,11 @@ public class CountryEjbTest {
                     Countries.class.getName();
 
     @Test
-    public void testTest() {
+    public void getAllCountries() {
         try {
             Context remoteEjbContext = createRemoteEjbContext(LOCALHOST, WILD_FLY_PORT);
             Countries countryEjb = (Countries) remoteEjbContext.lookup(EJB_URL);
-            countryEjb.getCountries().stream().forEach(
-                    System.out::println
-            );
-
+            countryEjb.getCountries();
         } catch (NamingException e) {
             System.err.println("Error resolving bean");
             e.printStackTrace();
