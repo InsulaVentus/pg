@@ -1,5 +1,6 @@
 package ejb;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.naming.Context;
@@ -34,7 +35,6 @@ public class CountryEjbIntegrationTest {
                     APP_NAME + "/" +
                     CountryEjb.class.getSimpleName() + "!" +
                     Countries.class.getName();
-
     @Test
     public void getAllCountries() {
         try {
