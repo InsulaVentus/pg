@@ -9,6 +9,7 @@
 
     <modules>
         <module>pgexam</module>
+        <module>ejb</module>
     </modules>
 
     <dependencyManagement>
