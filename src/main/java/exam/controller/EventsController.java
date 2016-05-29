@@ -24,6 +24,7 @@ public class EventsController implements Serializable {
     private String formCountry;
     private String formLocation;
     private String formDescription;
+    private boolean isCreated;
 
     public String eventCanlcel(){
         return "home.xhtml";
@@ -32,10 +33,18 @@ public class EventsController implements Serializable {
     public String createNew(){
         boolean createt = eventEJB.createEvent(formTitle,formCountry,formLocation,formDescription);
         if(createt){
+            isCreated = true;
             return "home.xhtml?faces-redirect=true";
         }else {
             return "newEvent.xhtml";
         }
+    }
+    public List<String> getEvents(){
+        if(eventEJB.allEvents().isEmpty()){
+           isCreated = false;
+        }
+        List list = eventEJB.allEvents();
+        return list;
     }
     public List<String> getAllCountry(){
         List<String> list = new ArrayList<String>();
@@ -74,4 +83,9 @@ public class EventsController implements Serializable {
     public void setFormDescription(String formDescription) {
         this.formDescription = formDescription;
     }
+
+    public boolean isCreated() {
+        return isCreated;
+    }
+
 }

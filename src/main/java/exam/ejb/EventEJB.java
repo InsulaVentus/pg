@@ -5,6 +5,7 @@ import exam.entities.Event;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 /**
  * Created by ng20 on 28.05.2016.
@@ -40,5 +41,8 @@ public class EventEJB {
         em.persist(event);
 
         return true;
+    }
+    public List allEvents(){
+        return em.createQuery("select u from Event u").getResultList();
     }
 }
