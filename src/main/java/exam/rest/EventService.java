@@ -1,5 +1,6 @@
 package exam.rest;
 
+import com.google.gson.Gson;
 import exam.controller.EventsController;
 import exam.entities.Event;
 
@@ -47,7 +48,9 @@ public class EventService {
         if (event == null) {
             return Response.status(404).entity("Did not find any events with id: " + id).build();
         }
-        return Response.ok("Værsågod, id = " + id, MediaType.TEXT_HTML).build(); //TODO Transform to JSON
+
+        Gson gson = new Gson();
+        return Response.ok(gson.toJson(event), MediaType.APPLICATION_JSON).build();
     }
 
     @GET
@@ -73,16 +76,16 @@ public class EventService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllEventsAsJson(@QueryParam("country") String country) {
 
+        Gson gson = new Gson();
+
         if (country == null) {
-            List<Event> events = controller.getEvents(); //TODO Transform to JSON
-            return Response.ok("Here are all the events", MediaType.TEXT_HTML).build();
+            List<Event> events = controller.getEvents();
+            return Response.ok(gson.toJson(events), MediaType.APPLICATION_JSON).build();
         }
 
         if (!controller.isValidCountry(country)) {
             return Response.status(400).entity("You did not provide a valid country!").build();
         }
-
-        List<Event> events = controller.getEventsByCountry(country);  //TODO Transform to JSON
-        return Response.ok("Here are all events (total: " + events.size() + ") in " + country, MediaType.TEXT_HTML).build();
+        return Response.ok(gson.toJson(controller.getEventsByCountry(country)), MediaType.APPLICATION_JSON).build();
     }
 }
