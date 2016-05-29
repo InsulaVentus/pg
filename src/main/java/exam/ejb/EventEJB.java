@@ -5,14 +5,11 @@ import exam.entities.Event;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.io.Serializable;
 import java.util.List;
 
-/**
- * Created by ng20 on 28.05.2016.
- */
-
 @Stateless
-public class EventEJB {
+public class EventEJB implements Serializable {
     @PersistenceContext(name = "pg6100_exam")
     private EntityManager em;
 
@@ -42,7 +39,20 @@ public class EventEJB {
 
         return true;
     }
+
     public List allEvents(){
         return em.createQuery("select u from Event u").getResultList();
+    }
+
+    public List getEventByCountry(String country) {
+        return em.createQuery("select u from Event u where u.country = :country")
+                .setParameter("country", country)
+                .getResultList();
+    }
+
+    public List getEventById(String id) {
+        return em.createQuery("select u from Event u where u.id = :id")
+                .setParameter("id", id)
+                .getResultList();
     }
 }

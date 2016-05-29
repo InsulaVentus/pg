@@ -2,17 +2,14 @@ package exam.controller;
 
 import exam.ejb.CountryEjb;
 import exam.ejb.EventEJB;
+import exam.entities.Event;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by ng20 on 28.05.2016.
- */
 @Named
 @SessionScoped
 public class EventsController implements Serializable {
@@ -39,18 +36,32 @@ public class EventsController implements Serializable {
             return "newEvent.xhtml";
         }
     }
-    public List<String> getEvents(){
+    public List<Event> getEvents(){
         if(eventEJB.allEvents().isEmpty()){
            isCreated = false;
         }
-        List list = eventEJB.allEvents();
-        return list;
+        return eventEJB.allEvents();
     }
-    public List<String> getAllCountry(){
-        List<String> list = new ArrayList<String>();
+
+    public List<Event> getEventsByCountry(String country) {
+        return eventEJB.getEventByCountry(country);
+    }
+
+    public Event getEventById(String id) {
+        List events = eventEJB.getEventById(id);
+        if (events == null || events.isEmpty()) {
+            return null;
+        }
+        return (Event) events.get(0);
+    }
+
+    public boolean isValidCountry(String queryParam) {
+        return getAllCountries().contains(queryParam);
+    }
+
+    public List<String> getAllCountries(){
         CountryEjb countryEjb = new CountryEjb();
-        list = countryEjb.getCountries();
-        return list;
+        return countryEjb.getCountries();
     }
     public String getFormCountry() {
         return formCountry;

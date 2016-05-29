@@ -3,9 +3,7 @@ package exam.entities;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-/**
- * Created by ng20 on 28.05.2016.
- */
+
 @Entity
 @Table(name = "Event")
 @NamedQuery(name = Event.DELETE_ALL, query = "DELETE FROM Event")
